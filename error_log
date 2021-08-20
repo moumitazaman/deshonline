@@ -1,0 +1,6 @@
+[31-May-2021 16:36:50 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 16793600 bytes) in /home3/fjxufomy/public_html/deshonlinemarketingltd/storage/framework/views/15b60a0f12d83a8e907e0f4136b0f601a565695c.php on line 71
+[31-May-2021 16:36:50 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 17321984 bytes) in /home3/fjxufomy/public_html/deshonlinemarketingltd/vendor/symfony/http-foundation/Response.php on line 381
+[31-May-2021 16:36:50 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 16773120 bytes) in Unknown on line 0
+[31-May-2021 16:38:06 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 16793600 bytes) in /home3/fjxufomy/public_html/deshonlinemarketingltd/storage/framework/views/15b60a0f12d83a8e907e0f4136b0f601a565695c.php on line 71
+[31-May-2021 16:38:06 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 17321984 bytes) in /home3/fjxufomy/public_html/deshonlinemarketingltd/vendor/symfony/http-foundation/Response.php on line 381
+[31-May-2021 16:38:06 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 16773120 bytes) in Unknown on line 0
