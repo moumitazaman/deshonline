@@ -604,6 +604,9 @@ $usrtree->wings=$lastwing->wings;
 
                 $levelcount= UserTree::where('wings',$lastwing->wings)->count();
 
+$userparent= User::where('seller_id',$lastwing->ref_id)->first();
+$parent= UserTree::where('seller_id',$lastwing->ref_id)->where('wings',$lastwing->wings)->latest()->first();
+    $lastparent= UserTree::where('level',$lastwing->level)->where('ref_id',$lastwing->ref_id)->where('wings',$lastwing->wings)->count();
         if($levelcount==0){
           $usrtree->level =1;
               
@@ -615,33 +618,81 @@ $usrtree->wings=$lastwing->wings;
            
 
         }
-        elseif($levelcount>=3 && $levelcount<=6){
+        elseif($lastuser->depth==2){
+            $usrtree->level =2;
+                   //dd($pidcount);
+
+        }
+        elseif($lastuser->depth==3 ){
             $usrtree->level =3;
                    //dd($pidcount);
 
         }
-        elseif($levelcount>=7 &&  $levelcount<=15){
+        elseif($lastuser->depth==4){
+        $usrtree->level =3;
+          //  dd($pidcount);
+
+        }
+         elseif($lastuser->depth==5 && $parent->depth==2 ){
         $usrtree->level =4;
           //  dd($pidcount);
 
         }
-        elseif($levelcount>=16 && $levelcount<=32){
-          $usrtree->level =5;
+        elseif($lastuser->depth==5 && $parent->depth==3 ){
+        $usrtree->level =3;
+          //  dd($pidcount);
+
         }
-        elseif($levelcount>=62 && $levelcount<128){
-            $usrtree->level =7;
+        elseif($lastuser->depth==8){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
         }
-        elseif($levelcount>=128 || $levelcount<256){
-           $usrtree->level =8;
+        elseif($lastuser->depth==9 && $request->input('ref_id')==$lastuser->ref_id ){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+         elseif($lastuser->depth==10){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        elseif($lastuser->depth==11){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        elseif($lastuser->depth==11 && $request->input('ref_id')==$lastuser->ref_id ){
+        $usrtree->level =5;
+          //  dd($pidcount);
+
+        }
+         elseif($lastuser->depth==12){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        elseif($lastuser->depth==13){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        elseif($lastuser->depth==14){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        elseif($lastuser->depth==15){
+        $usrtree->level =4;
+          //  dd($pidcount);
+
+        }
+        else{
+            
         }
         
-        else{
-             $usrtree->level =9;
-        }
 //dd($dicount);
-$userparent= User::where('seller_id',$lastwing->ref_id)->first();
-$parent= UserTree::where('seller_id',$lastwing->ref_id)->where('wings',$lastwing->wings)->latest()->first();
-    $lastparent= UserTree::where('level',$lastwing->level)->where('ref_id',$lastwing->ref_id)->where('wings',$lastwing->wings)->count();
 //dd($lastparent);
 if($lastwing->wings=='left' && $lastwing->level==1 && $dicount==0){
     $usrtree->depth=1;
@@ -679,21 +730,49 @@ elseif($request->input('ref_id')!=2000){
         $usrtree->depth=$child1->depth+1;
         
     }
-    elseif($child1 && $child2 && $lastuid->level!=$parent->level+2){
-        if($lastwing->track==1){
+    elseif($child1 && $child2 && $lastuid->ref_id==$request->input('ref_id')){
+        if($lastwing->track==1 && $lastuser->depth==((2*$n)+1)){
             $usrtree->depth=$child1->depth*2; 
          
         }
+        elseif($lastwing->track==1 && $lastuser->depth==11){
+            $usrtree->depth=16; 
+         
+        }
+        elseif($lastwing->track==1 && $lastuser->depth==23){
+            $usrtree->depth=32; 
+         
+        }
         else{
-            $usrtree->depth=($child1->depth*2)+1;
+            $usrtree->depth=($lastuid->depth)+1;
             
         }
      
     }
+       elseif($child1 && $child2 && $lastuid->ref_id!=$request->input('ref_id')){
+        if($lastwing->track==1 && $lastuser->depth==((2*$n)+1)){
+            $usrtree->depth=$child2->depth*2; 
+         
+        }
+        elseif($lastwing->track==1 && $lastuser->depth==15){
+            $usrtree->depth=16; 
+         
+        }
+        elseif($lastwing->track==1 && $lastuser->depth==32){
+            $usrtree->depth=32; 
+         
+        }
+        else{
+            $usrtree->depth=($lastuid->depth)+1;
+            
+        }
+     
+    }
+      
    
     else{
        
-               $usrtree->depth=($child1->depth*2)+1;
+               $usrtree->depth=($lastuid->depth)+1;
   
      /*  if($lastu->track==2){
      $usrtree->depth=$child1->depth*2; 
